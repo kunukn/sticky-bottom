@@ -1,0 +1,100 @@
+// specify static height
+$box-height: 100px; 
+
+/* Demo styling */
+
+*,
+:before,
+:after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+body {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 1.5;
+  margin: 0;
+  min-height: 100vh;
+}
+
+.app {
+  position: relative;
+  min-height: 300vh;
+  max-width: 400px;
+  margin: 0 auto;
+  background: #eee;
+//  padding: 1rem;
+}
+
+.content {
+  //  display: none;
+  min-height: 10rem;
+  padding: 1rem;
+  margin: 0;
+  background: hotpink;
+  overflow: hidden;
+}
+
+/* library start here */
+
+// Optional
+.kn-debug {
+  color: white;
+  position: fixed;
+  padding: 0 .25rem;
+  top: 0;
+  left: 0;
+  max-width: 100%;
+  overflow: hidden;
+  background: rgba(black, 0.5);
+  min-height: 1rem;
+  font-size: 1rem;
+  z-index: 1;
+}
+
+.kn-sticky-bottom {
+  position: relative; // required
+  display: block; // required (implicit)
+  &.kn-is-before { // state 1
+    .kn-sticky-bottom__box-inner {
+      box-shadow: 0 -3px 3px -3px #444; // optional
+    }  
+  }  
+  &.kn-is-fixed { // state 2
+    .kn-sticky-bottom__box-inner {
+      box-shadow: 0 -3px 3px -3px #444; // optional
+    }  
+  }  
+  &.kn-is-after { // state 3
+    .kn-sticky-bottom__box-inner {
+    }
+  }
+}
+
+.kn-sticky-bottom__box {
+  // This is used for js calculations
+  height: $box-height; // required
+  display: block; // required (implicit)
+}
+.kn-sticky-bottom__box-inner {
+  height: $box-height; // required
+  position: absolute; // required
+  bottom: 0; // required
+  left: 0; // required
+  width: 100%; // required
+  overflow: hidden; // optional
+  background: lightblue; // optional
+  padding: 1rem; // optional
+}
+.kn-sticky-bottom__boundary {
+  padding: 1rem; // optional
+  background: white; // optional
+  position: relative; // required
+  display: block; // required
+//  max-height: 50vh; // debug
+  overflow: hidden; //  // debug
+}
