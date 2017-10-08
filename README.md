@@ -1,5 +1,5 @@
 # sticky bottom
-Sticky bottom library - vanilla JS
+sticky bottom library - vanilla JS
 
 # demo
 * https://codepen.io/kunukn/full/yzvWQq/
