@@ -4,6 +4,8 @@ Sticky Bottom library - vanilla JS
 # demo
 * https://codepen.io/kunukn/full/yzvWQq/
 
+<img src="https://github.com/kunukn/sticky-bottom/blob/master/media/sticky-bottom.gif?raw=true" width="300">
+
 # about
 A sticky box that sticks at the bottom within a boundary element.
 
