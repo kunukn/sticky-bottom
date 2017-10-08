@@ -6,6 +6,7 @@ import {
   getViewHeight,
   addCss,
   delCss,
+  getStickyVendorPrefixAsString,
 } from './helpers';
 
 const BCR = 'getBoundingClientRect';
@@ -24,6 +25,7 @@ export default class StickyBottom {
     this.state = {
       scroll: {},
       rect: {},
+      cssSticky: getStickyVendorPrefixAsString(),
     };
 
     const areaEl = qs(this.props.elems.area);

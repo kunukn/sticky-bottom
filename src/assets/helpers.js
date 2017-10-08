@@ -44,3 +44,17 @@ export function delCss(el, css) {
     el.classList.remove(css);
   }
 }
+
+export function getStickyVendorPrefixAsString() {
+  const el = document.createElement('div');
+  const names = ['sticky', 'webkitSticky'];
+
+  for (let i = 0; i < names.length; i += 1) {
+    const name = names[i];
+    el.style.position = name;
+    if (el.style.position === name) {
+      return name;
+    }
+  }
+  return undefined;
+}
