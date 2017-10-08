@@ -35,6 +35,7 @@ class StickyBottom {
 
   init() {
     this.initAndUpdateDimensions();
+    this.updateDOM({ forceUpdate: true });
     window.addEventListener("scroll", this.onScroll);
     window.addEventListener("resize", this.onResize);
     return this;
@@ -60,6 +61,7 @@ class StickyBottom {
 
   updateDimensions() {
     let stickyMode = "";
+    let { stickyMode: stickyModePrev } = this.state.scroll;
 
     const { area, boxInner } = this.state.rect;
     const {
@@ -88,18 +90,27 @@ class StickyBottom {
     this.state.scroll = {
       ...this.state.scroll,
       scrollPosition,
-      stickyMode
+      stickyMode,
+      stickyModePrev
     };
 
-    this.updateDom();
     return this;
   }
 
-  updateDom() {
+  updateDOM({ forceUpdate } = {}) {
     const { area, box, boxInner, boundary } = this.state.rect;
-    const { scrollPosition, viewHeight, stickyMode } = this.state.scroll;
+    const {
+      scrollPosition,
+      viewHeight,
+      stickyMode,
+      stickyModePrev
+    } = this.state.scroll;
 
     if (stickyMode === "before") {
+      if (!forceUpdate && stickyModePrev === stickyMode) {
+        // no DOM update needed
+        return this;
+      }
       if (this.elems.debug) {
         this.elems.debug.textContent = "debug: state before";
       }
@@ -111,6 +122,10 @@ class StickyBottom {
       delCss(this.elems.area, ["kn-is-fixed", "kn-is-after"]);
       addCss(this.elems.area, "kn-is-before");
     } else if (stickyMode === "fixed") {
+      if (!forceUpdate && stickyModePrev === stickyMode) {
+        // no DOM update needed
+        return this;
+      }
       if (this.elems.debug) {
         this.elems.debug.textContent = "debug: state fixed";
       }
@@ -122,6 +137,10 @@ class StickyBottom {
       delCss(this.elems.area, ["kn-is-before", "kn-is-after"]);
       addCss(this.elems.area, "kn-is-fixed");
     } else if (stickyMode === "after") {
+      if (!forceUpdate && stickyModePrev === stickyMode) {
+        // no DOM update needed
+        return this;
+      }
       if (this.elems.debug) {
         this.elems.debug.textContent = "debug: state after";
       }
@@ -149,6 +168,7 @@ class StickyBottom {
     if (!this.state.scroll.ticking) {
       rAF(() => {
         this.updateDimensions();
+        this.updateDOM();
         this.state.scroll.ticking = false;
       });
     }
@@ -156,7 +176,10 @@ class StickyBottom {
   }
 
   onResize() {
-    rAF(this.initAndUpdateDimensions.bind(this));
+    rAF(() => {
+      this.initAndUpdateDimensions.call(this);
+      this.updateDOM.call(this, { forceUpdate: true });
+    });
   }
 }
 
