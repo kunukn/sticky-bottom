@@ -40,9 +40,16 @@ body {
   overflow: hidden;
 }
 
-/* library start here */
-
-// Optional
+/* custom styling */
+.kn-sticky-bottom__box {
+  overflow: hidden;
+  background: lightblue;
+  padding: 1rem;
+}
+.kn-sticky-bottom__boundary {
+  padding: 1rem;
+  background: white;
+}
 .kn-debug {
   color: white;
   position: fixed;
@@ -56,47 +63,51 @@ body {
   font-size: 1rem;
   z-index: 1;
 }
-
 .kn-sticky-bottom {
-  position: relative; // required
-  display: block; // required (implicit)
   &.kn-is-before {
     // state 1
-    .kn-sticky-bottom__box-inner {
-      box-shadow: 0 -3px 3px -3px #444; // optional
+    .kn-sticky-bottom__box {
+      box-shadow: 0 -3px 3px -3px #444;
     }
   }
   &.kn-is-fixed {
     // state 2
-    .kn-sticky-bottom__box-inner {
-      box-shadow: 0 -3px 3px -3px #444; // optional
-    }
-  }
-  &.kn-is-after {
-    // state 3
-    .kn-sticky-bottom__box-inner {
+    .kn-sticky-bottom__box {
+      box-shadow: 0 -3px 3px -3px #444;
     }
   }
 }
 
-.kn-sticky-bottom__box {
-  // This is used for js calculations
-  height: $box-height; // required
-  display: block; // required (implicit)
+/* library starts here */
+.kn-sticky-bottom {
+  position: relative;
+  display: block;
+  padding-bottom: $box-height;
+  &.kn-is-before {
+    // state 1
+    .kn-sticky-bottom__box {
+    }
+  }
+  &.kn-is-fixed {
+    // state 2
+    .kn-sticky-bottom__box {
+    }
+  }
+  &.kn-is-after {
+    // state 3
+    .kn-sticky-bottom__box {
+    }
+  }
 }
-.kn-sticky-bottom__box-inner {
-  height: $box-height; // required
-  position: absolute; // required
-  bottom: 0; // required
-  left: 0; // required
-  width: 100%; // required
-  overflow: hidden; // optional
-  background: lightblue; // optional
-  padding: 1rem; // optional
+.kn-sticky-bottom__box {
+  display: block;
+  height: $box-height;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 }
 .kn-sticky-bottom__boundary {
-  padding: 1rem; // optional
-  background: white; // optional
-  position: relative; // required
-  display: block; // required
+  position: relative;
+  display: block;
 }

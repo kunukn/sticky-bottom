@@ -16,7 +16,6 @@ export default class StickyBottom {
       elems: {
         area: '.js.kn-sticky-bottom',
         box: '.kn-sticky-bottom__box',
-        boxInner: '.kn-sticky-bottom__box-inner',
         boundary: '.kn-sticky-bottom__boundary',
       },
     };
@@ -31,7 +30,6 @@ export default class StickyBottom {
     this.elems = {
       area: areaEl,
       box: qs(this.props.elems.box, areaEl),
-      boxInner: qs(this.props.elems.boxInner, areaEl),
       boundary: qs(this.props.elems.boundary, areaEl),
     };
     if (this.props.debug) {
@@ -54,7 +52,6 @@ export default class StickyBottom {
       ...this.state.rect,
       area: this.elems.area[BCR](),
       box: this.elems.box[BCR](),
-      boxInner: this.elems.boxInner[BCR](),
       boundary: this.elems.boundary[BCR](),
     };
     this.state.scroll = {
@@ -107,7 +104,7 @@ export default class StickyBottom {
   }
 
   updateDOM({ forceUpdate } = {}) {
-    const { area, box } = this.state.rect;
+    const { area } = this.state.rect;
     const {
       viewHeight,
       stickyMode,
@@ -122,7 +119,7 @@ export default class StickyBottom {
       if (this.elems.debug) {
         this.elems.debug.textContent = 'debug: state before';
       }
-      const el = this.elems.boxInner;
+      const el = this.elems.box;
       el.style.position = 'absolute';
       el.style.bottom = `${area.height - viewHeight}px`;
       el.style.left = '';
@@ -137,11 +134,11 @@ export default class StickyBottom {
       if (this.elems.debug) {
         this.elems.debug.textContent = 'debug: state fixed';
       }
-      const el = this.elems.boxInner;
+      const el = this.elems.box;
       el.style.position = 'fixed';
       el.style.bottom = '';
-      el.style.left = `${box.left}px`;
-      el.style.width = `${box.width}px`;
+      el.style.left = `${area.left}px`;
+      el.style.width = `${area.width}px`;
       delCss(this.elems.area, ['kn-is-before', 'kn-is-after']);
       addCss(this.elems.area, 'kn-is-fixed');
     } else if (stickyMode === 'after') {
@@ -152,7 +149,7 @@ export default class StickyBottom {
       if (this.elems.debug) {
         this.elems.debug.textContent = 'debug: state after';
       }
-      const el = this.elems.boxInner;
+      const el = this.elems.box;
       el.style.position = 'absolute';
       el.style.bottom = '';
       el.style.left = '';
