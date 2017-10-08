@@ -1,23 +1,30 @@
 import './StickyBottom.scss';
+import {
+  qs,
+  rAF,
+  getScrollPosition,
+  getViewHeight,
+  addCss,
+  delCss,
+} from './helpers';
 
-const log = console.log.bind(console);
-const BCR = "getBoundingClientRect";
+const BCR = 'getBoundingClientRect';
 
 export default class StickyBottom {
   constructor(props) {
     const defaultProps = {
       elems: {
-        area: ".js.kn-sticky-bottom",
-        box: ".kn-sticky-bottom__box",
-        boxInner: ".kn-sticky-bottom__box-inner",
-        boundary: ".kn-sticky-bottom__boundary"
-      }
+        area: '.js.kn-sticky-bottom',
+        box: '.kn-sticky-bottom__box',
+        boxInner: '.kn-sticky-bottom__box-inner',
+        boundary: '.kn-sticky-bottom__boundary',
+      },
     };
     this.props = { ...defaultProps, ...props };
 
     this.state = {
       scroll: {},
-      rect: {}
+      rect: {},
     };
 
     const areaEl = qs(this.props.elems.area);
@@ -25,7 +32,7 @@ export default class StickyBottom {
       area: areaEl,
       box: qs(this.props.elems.box, areaEl),
       boxInner: qs(this.props.elems.boxInner, areaEl),
-      boundary: qs(this.props.elems.boundary, areaEl)
+      boundary: qs(this.props.elems.boundary, areaEl),
     };
     if (this.props.debug) {
       this.elems.debug = qs(this.props.debug);
@@ -38,24 +45,23 @@ export default class StickyBottom {
   init() {
     this.initAndUpdateDimensions();
     this.updateDOM({ forceUpdate: true });
-    window.addEventListener("scroll", this.onScroll);
-    window.addEventListener("resize", this.onResize);
+    window.addEventListener('scroll', this.onScroll);
+    window.addEventListener('resize', this.onResize);
     return this;
   }
   initAndUpdateDimensions() {
-    
     this.state.rect = {
       ...this.state.rect,
       area: this.elems.area[BCR](),
       box: this.elems.box[BCR](),
       boxInner: this.elems.boxInner[BCR](),
-      boundary: this.elems.boundary[BCR]()
+      boundary: this.elems.boundary[BCR](),
     };
     this.state.scroll = {
       ...this.state.scroll,
       viewHeight: getViewHeight(),
       scrollStartPosition: getScrollPosition(),
-      scrollPosition: getScrollPosition()
+      scrollPosition: getScrollPosition(),
     };
 
     this.updateDimensions();
@@ -63,14 +69,14 @@ export default class StickyBottom {
   }
 
   updateDimensions() {
-    let stickyMode = "";
-    let { stickyMode: stickyModePrev } = this.state.scroll;
+    let stickyMode = '';
+    const { stickyMode: stickyModePrev } = this.state.scroll;
 
-    const { area, boxInner } = this.state.rect;
+    const { area } = this.state.rect;
     const {
       viewHeight,
       scrollStartPosition,
-      scrollPosition
+      scrollPosition,
     } = this.state.scroll;
 
     const areaTop = area.top + scrollStartPosition;
@@ -81,87 +87,86 @@ export default class StickyBottom {
     const viewIsBeforeArea = areaBottom - scrollPosition - viewHeight;
 
     if (area.height - viewHeight <= 0) {
-      stickyMode = "after";
+      stickyMode = 'after';
     } else if (areaIsAfterScroll <= 0 && viewIsBeforeArea >= 0) {
-      stickyMode = "before";
+      stickyMode = 'before';
     } else if (areaIsAfterScroll >= 0 && viewIsBeforeArea >= 0) {
-      stickyMode = "fixed";
+      stickyMode = 'fixed';
     } else {
-      stickyMode = "after";
+      stickyMode = 'after';
     }
 
     this.state.scroll = {
       ...this.state.scroll,
       scrollPosition,
       stickyMode,
-      stickyModePrev
+      stickyModePrev,
     };
 
     return this;
   }
 
   updateDOM({ forceUpdate } = {}) {
-    const { area, box, boxInner, boundary } = this.state.rect;
+    const { area, box } = this.state.rect;
     const {
-      scrollPosition,
       viewHeight,
       stickyMode,
-      stickyModePrev
+      stickyModePrev,
     } = this.state.scroll;
 
-    if (stickyMode === "before") {
+    if (stickyMode === 'before') {
       if (!forceUpdate && stickyModePrev === stickyMode) {
         // no DOM update needed
         return this;
       }
       if (this.elems.debug) {
-        this.elems.debug.textContent = "debug: state before";
+        this.elems.debug.textContent = 'debug: state before';
       }
       const el = this.elems.boxInner;
-      el.style.position = "absolute";
+      el.style.position = 'absolute';
       el.style.bottom = `${area.height - viewHeight}px`;
-      el.style.left = "";
-      el.style.width = "";
-      delCss(this.elems.area, ["kn-is-fixed", "kn-is-after"]);
-      addCss(this.elems.area, "kn-is-before");
-    } else if (stickyMode === "fixed") {
+      el.style.left = '';
+      el.style.width = '';
+      delCss(this.elems.area, ['kn-is-fixed', 'kn-is-after']);
+      addCss(this.elems.area, 'kn-is-before');
+    } else if (stickyMode === 'fixed') {
       if (!forceUpdate && stickyModePrev === stickyMode) {
         // no DOM update needed
         return this;
       }
       if (this.elems.debug) {
-        this.elems.debug.textContent = "debug: state fixed";
+        this.elems.debug.textContent = 'debug: state fixed';
       }
       const el = this.elems.boxInner;
-      el.style.position = "fixed";
-      el.style.bottom = "";
+      el.style.position = 'fixed';
+      el.style.bottom = '';
       el.style.left = `${box.left}px`;
       el.style.width = `${box.width}px`;
-      delCss(this.elems.area, ["kn-is-before", "kn-is-after"]);
-      addCss(this.elems.area, "kn-is-fixed");
-    } else if (stickyMode === "after") {
+      delCss(this.elems.area, ['kn-is-before', 'kn-is-after']);
+      addCss(this.elems.area, 'kn-is-fixed');
+    } else if (stickyMode === 'after') {
       if (!forceUpdate && stickyModePrev === stickyMode) {
         // no DOM update needed
         return this;
       }
       if (this.elems.debug) {
-        this.elems.debug.textContent = "debug: state after";
+        this.elems.debug.textContent = 'debug: state after';
       }
       const el = this.elems.boxInner;
-      el.style.position = "absolute";
-      el.style.bottom = "";
-      el.style.left = "";
-      el.style.width = "";
-      delCss(this.elems.area, ["kn-is-before", "kn-is-fixed"]);
-      addCss(this.elems.area, "kn-is-after");
+      el.style.position = 'absolute';
+      el.style.bottom = '';
+      el.style.left = '';
+      el.style.width = '';
+      delCss(this.elems.area, ['kn-is-before', 'kn-is-fixed']);
+      addCss(this.elems.area, 'kn-is-after');
     }
 
     return this;
   }
 
   destroy() {
-    window.removeEventListener("scroll", this.onScroll);
-    window.removeEventListener("resize", this.onResize);
+    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('resize', this.onResize);
     return this;
   }
 
@@ -183,50 +188,5 @@ export default class StickyBottom {
       this.initAndUpdateDimensions.call(this);
       this.updateDOM.call(this, { forceUpdate: true });
     });
-  }
-}
-
-function qs(expr, context) {
-  return (context || document).querySelector(expr);
-}
-function qsa(expr, context) {
-  return [].slice.call((context || document).querySelectorAll(expr), 0);
-}
-
-function rAF(callback) {
-  if (window.requestAnimationFrame) {
-    window.requestAnimationFrame(callback);
-  } else {
-    setTimeout(callback, 0);
-  }
-}
-
-function getScrollPosition() {
-  return (
-    window.scrollY ||
-    window.pageYOffset ||
-    document.documentElement.scrollTop ||
-    0
-  );
-}
-
-function getViewHeight() {
-  return Math.max(window.innerHeight, 0);
-}
-
-function addCss(el, css) {
-  if (css && Array.isArray(css)) {
-    // in loop because IE11
-    css.forEach(c => el.classList.add(c));
-  } else {
-    el.classList.add(css);
-  }
-}
-function delCss(el, css) {
-  if (css && Array.isArray(css)) {
-    // in loop because IE11
-    css.forEach(c => el.classList.remove(c));
-  } else {
-    el.classList.remove(css);
   }
 }
