@@ -1,5 +1,5 @@
 // specify static height
-$box-height: 100px; 
+$box-height: 100px;
 
 /* Demo styling */
 
@@ -13,21 +13,22 @@ html {
   font-size: 16px;
 }
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 1.5rem;
   font-weight: 300;
   line-height: 1.5;
   margin: 0;
   min-height: 100vh;
+  background: white;
 }
 
 .app {
   position: relative;
-  min-height: 300vh;
+  //min-height: 300vh;
   max-width: 400px;
   margin: 0 auto;
-  background: #eee;
-//  padding: 1rem;
+  background: white;
+  padding: 1rem;
 }
 
 .content {
@@ -45,7 +46,7 @@ body {
 .kn-debug {
   color: white;
   position: fixed;
-  padding: 0 .25rem;
+  padding: 0 0.25rem;
   top: 0;
   left: 0;
   max-width: 100%;
@@ -59,17 +60,20 @@ body {
 .kn-sticky-bottom {
   position: relative; // required
   display: block; // required (implicit)
-  &.kn-is-before { // state 1
+  &.kn-is-before {
+    // state 1
     .kn-sticky-bottom__box-inner {
       box-shadow: 0 -3px 3px -3px #444; // optional
-    }  
-  }  
-  &.kn-is-fixed { // state 2
+    }
+  }
+  &.kn-is-fixed {
+    // state 2
     .kn-sticky-bottom__box-inner {
       box-shadow: 0 -3px 3px -3px #444; // optional
-    }  
-  }  
-  &.kn-is-after { // state 3
+    }
+  }
+  &.kn-is-after {
+    // state 3
     .kn-sticky-bottom__box-inner {
     }
   }
@@ -95,6 +99,4 @@ body {
   background: white; // optional
   position: relative; // required
   display: block; // required
-//  max-height: 50vh; // debug
-  overflow: hidden; //  // debug
 }
