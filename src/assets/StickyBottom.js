@@ -1,7 +1,9 @@
+import './StickyBottom.scss';
+
 const log = console.log.bind(console);
 const BCR = "getBoundingClientRect";
 
-class StickyBottom {
+export default class StickyBottom {
   constructor(props) {
     const defaultProps = {
       elems: {
@@ -41,6 +43,7 @@ class StickyBottom {
     return this;
   }
   initAndUpdateDimensions() {
+    
     this.state.rect = {
       ...this.state.rect,
       area: this.elems.area[BCR](),
@@ -227,9 +230,3 @@ function delCss(el, css) {
     el.classList.remove(css);
   }
 }
-
-let stickyBottom = new StickyBottom({
-  /* optional config */
-  debug: ".js.kn-debug" // optional
-});
-stickyBottom.init();
