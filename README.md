@@ -20,7 +20,9 @@ IE 11+ ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ |
 
 ```html
 <head>  
-  <link rel="stylesheet" href="dist/app.bundle.css">  
+  <!-- this is dynamically rendered from JS
+  <link rel="stylesheet" href="dist/sb.bundle.css">  
+   -->
 </head>
 <body>
   <!-- library markup -->
@@ -36,7 +38,7 @@ IE 11+ ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ |
     </div>
   <!-- end library markup -->
                 
-   <script src="dist/app.bundle.js"></script> <!-- library -->
+   <script src="dist/sb.bundle.js"></script> <!-- library -->
    <script> <!-- usage -->
       var stickyBottom = new StickyBottom({
         /* optional config */        
