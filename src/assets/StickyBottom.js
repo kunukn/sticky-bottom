@@ -166,10 +166,9 @@ export default class StickyBottom {
 
       if (this.props.renderingMode === 'two-states') {
         renderAsAfter();
-        return this;
+      } else {
+        renderAsBefore();
       }
-
-      renderAsBefore();
     } else if (stickyMode === 'fixed') {
       if (!forceUpdate && stickyModePrev === stickyMode) {
         // no DOM update needed
@@ -184,6 +183,7 @@ export default class StickyBottom {
       renderAsAfter();
     }
 
+    this.elems.area.setAttribute('data-sticky-bottom-prev-state', stickyModePrev || 'no-prev-state');
     return this;
   }
 
