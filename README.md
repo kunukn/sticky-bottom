@@ -20,9 +20,7 @@ IE 11+ ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ |
 
 ```html
 <head>  
-  <!-- this is dynamically rendered from JS
   <link rel="stylesheet" href="dist/sb.bundle.css">  
-   -->
 </head>
 <body>
   <!-- library markup -->
