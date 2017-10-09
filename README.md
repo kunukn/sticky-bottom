@@ -1,5 +1,5 @@
 # Sticky Bottom
-Sticky Bottom library - vanilla JS
+Sticky Bottom library - vanilla JS, no external dependency.
 
 # demo
 * https://codepen.io/kunukn/full/yzvWQq/
