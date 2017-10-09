@@ -35,12 +35,34 @@ body {
 
 /* ---------------------- */
 /* Custom Sticky Bottom styling, optional */
+@keyframes sticky-bottom-appear {
+  0%{ 
+    transform: translateY(100%) translateZ(0);
+  }
+  100%{
+    transform: translateY(0) translateZ(0);
+  }
+}
 .sticky-bottom{
   &--rendering-mode-two-states{
     .sticky-bottom__box {      
       background: dodgerblue;
     }
-  }
+    &[data-sticky-bottom-prev-state=before]{
+      &[data-sticky-bottom-state=fixed]{
+        .sticky-bottom__box {      
+          animation: sticky-bottom-appear 400ms forwards;
+        }      
+      }
+    }  
+    &[data-sticky-bottom-prev-state=fixed]{
+      &[data-sticky-bottom-state=before]{        
+        .sticky-bottom__box {      
+          // some animation maybe
+        }      
+      }
+    }
+  }  
 }
 .sticky-bottom__box {
   overflow: hidden;

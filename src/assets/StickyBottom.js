@@ -183,6 +183,7 @@ export default class StickyBottom {
       renderAsAfter();
     }
 
+    this.elems.area.setAttribute('data-sticky-bottom-state', stickyMode || 'no-state');
     this.elems.area.setAttribute('data-sticky-bottom-prev-state', stickyModePrev || 'no-prev-state');
     return this;
   }
