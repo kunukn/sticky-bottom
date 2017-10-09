@@ -133,6 +133,9 @@ export default class StickyBottom {
     };
 
     const renderAsFixed = () => {
+      if (this.elems.debug) {
+        this.elems.debug.textContent = 'debug: state fixed';
+      }
       const el = this.elems.box;
       el.style.position = 'fixed';
       el.style.bottom = '';
