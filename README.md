@@ -2,7 +2,7 @@
 Sticky Bottom library - vanilla JS, no external dependency. Mobile friendly in two-states rendering mode.
 
 # demo
-* https://codepen.io/kunukn/full/yzvWQq/
+* https://codepen.io/kunukn/debug/yzvWQq/
 
 <img src="https://github.com/kunukn/sticky-bottom/blob/master/media/sticky-bottom.gif?raw=true" width="300">
 
