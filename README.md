@@ -23,7 +23,8 @@ IE 11+ ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ |
   <!-- library markup -->
   <div class="js sticky-bottom">
       <div class="sticky-bottom__boundary">
-        This is the boundary area, the sticky box will be around if boundary is in focus - Lorem ipsum dolor sit amet, consectetur
+        This is the boundary area, 
+        the sticky box will be around if boundary is in focus
         long content here......
       </div>
       <div class="sticky-bottom__box">
