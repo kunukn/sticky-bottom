@@ -39,7 +39,8 @@ IE 11+ ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ |
   <!-- end library markup -->
                 
    <script src="dist/sb.bundle.js"></script> <!-- library -->
-   <script> <!-- usage -->
+   <!-- usage --> 
+   <script> 
       var stickyBottom = new StickyBottom({ /* optional config */        
         /* best for mobile support, two modes only, default is three-states */
         //renderingMode: 'two-states', 
