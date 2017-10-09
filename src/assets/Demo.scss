@@ -43,7 +43,7 @@ body {
   padding: 1rem;
   background: white;
 }
-.debug {
+.sticky-bottom-debug {
   color: white;
   position: fixed;
   padding: 0 0.25rem;
@@ -57,13 +57,13 @@ body {
   z-index: 1;
 }
 .sticky-bottom {
-  &.is-before {
+  &.sticky-bottom--is-before {
     // state 1
     .sticky-bottom__box {
       box-shadow: 0 -3px 3px -3px #444;
     }
   }
-  &.is-fixed {
+  &.sticky-bottom--is-fixed {
     // state 2
     .sticky-bottom__box {
       box-shadow: 0 -3px 3px -3px #444;

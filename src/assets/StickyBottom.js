@@ -8,6 +8,10 @@ import {
 } from './helpers';
 
 const BCR = 'getBoundingClientRect';
+const RENDERING_MODES = {
+  TWO_STATES: 'two-states',
+  THREE_STATES: 'three-states',
+};
 
 export default class StickyBottom {
   constructor(props) {
@@ -25,6 +29,11 @@ export default class StickyBottom {
       rect: {},
     };
 
+    this.onScroll = this.onScroll.bind(this);
+    this.onResize = this.onResize.bind(this);
+  }
+
+  init() {
     const areaEl = qs(this.props.elems.area);
     this.elems = {
       area: areaEl,
@@ -34,13 +43,12 @@ export default class StickyBottom {
     if (this.props.debug) {
       this.elems.debug = qs(this.props.debug);
     }
+    if (this.props.renderingMode === RENDERING_MODES.TWO_STATES) {
+      this.elems.area.classList.add('sticky-bottom--rendering-mode-two-states');
+    }
 
-    this.onScroll = this.onScroll.bind(this);
-    this.onResize = this.onResize.bind(this);
-  }
-
-  init() {
     this.initAndUpdateDimensions();
+
     this.updateDOM({ forceUpdate: true });
     window.addEventListener('scroll', this.onScroll);
     window.addEventListener('resize', this.onResize);
@@ -119,8 +127,8 @@ export default class StickyBottom {
       el.style.bottom = `${area.height - viewHeight}px`;
       el.style.left = '';
       el.style.width = '';
-      delCss(this.elems.area, ['is-fixed', 'is-after']);
-      addCss(this.elems.area, 'is-before');
+      delCss(this.elems.area, ['sticky-bottom--is-fixed', 'sticky-bottom--is-after']);
+      addCss(this.elems.area, 'sticky-bottom--is-before');
     };
 
     const renderAsFixed = () => {
@@ -129,8 +137,8 @@ export default class StickyBottom {
       el.style.bottom = '';
       el.style.left = `${area.left}px`;
       el.style.width = `${area.width}px`;
-      delCss(this.elems.area, ['is-before', 'is-after']);
-      addCss(this.elems.area, 'is-fixed');
+      delCss(this.elems.area, ['sticky-bottom--is-before', 'sticky-bottom--is-after']);
+      addCss(this.elems.area, 'sticky-bottom--is-fixed');
     };
 
     const renderAsAfter = () => {
@@ -142,20 +150,21 @@ export default class StickyBottom {
       el.style.bottom = '';
       el.style.left = '';
       el.style.width = '';
-      delCss(this.elems.area, ['is-before', 'is-fixed']);
-      addCss(this.elems.area, 'is-after');
+      delCss(this.elems.area, ['sticky-bottom--is-before', 'sticky-bottom--is-fixed']);
+      addCss(this.elems.area, 'sticky-bottom--is-after');
     };
 
     if (stickyMode === 'before') {
-      if (this.props.mode === 'two-states') {
-        renderAsAfter();
-        return this;
-      }
-
       if (!forceUpdate && stickyModePrev === stickyMode) {
         // no DOM update needed
         return this;
       }
+
+      if (this.props.renderingMode === 'two-states') {
+        renderAsAfter();
+        return this;
+      }
+
       renderAsBefore();
     } else if (stickyMode === 'fixed') {
       if (!forceUpdate && stickyModePrev === stickyMode) {

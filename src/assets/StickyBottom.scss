@@ -17,17 +17,17 @@ $box-height: 100px;
   position: relative;
   display: block;
   padding-bottom: $box-height;
-  &.is-before {
+  &.sticky-bottom--is-before {
     // state 1
     .sticky-bottom__box {
     }
   }
-  &.is-fixed {
+  &.sticky-bottom--is-fixed {
     // state 2
     .sticky-bottom__box {
     }
   }
-  &.is-after {
+  &.sticky-bottom--is-after {
     // state 3
     .sticky-bottom__box {
     }
