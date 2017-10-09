@@ -19,6 +19,9 @@ IE 11+ ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ |
 ### html structure
 
 ```html
+<head>  
+  <link rel="stylesheet" href="dist/app.bundle.css">  
+</head>
 <body>
   <!-- library markup -->
   <div class="js sticky-bottom">
