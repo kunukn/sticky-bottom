@@ -43,12 +43,14 @@
   <div class="js sticky-bottom-debug"></div>
 
   <script>
-    var stickyBottom = new StickyBottom({
-      /* optional config */
-      debug: ".js.sticky-bottom-debug", // optional
-      //renderingMode: 'two-states', // two modes only, default is three-states
+    var stickyBottom = new StickyBottom({ /* optional config */    
+      /* optional */
+      debug: ".js.sticky-bottom-debug", 
+      /* two-states works best for iOS/Android, default is three-states */
+      //renderingMode: 'two-states', 
     });
     stickyBottom.init();
+    //stickyBottom.destroy(); /* use when removed from DOM */
   </script>
 </body>
 
