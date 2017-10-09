@@ -99,7 +99,8 @@ module.exports = (env = {}) => {
         },
         {
           test: /\.(sass|scss)$/,
-          use: ['style-loader', 'css-loader', 'sass-loader']
+          use: ['style-loader', 'css-loader', 'sass-loader'],
+          exclude: [/node_modules/]
         },
         {
           test: /\.(png|gif|jpg)$/,
