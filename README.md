@@ -40,7 +40,7 @@ IE 11+ ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ |
    <script> <!-- usage -->
       var stickyBottom = new StickyBottom({
         /* optional config */        
-        renderingMode: 'two-states', // two modes only, default is three-states
+        //renderingMode: 'two-states', // two modes only, default is three-states
       });
       stickyBottom.init();
    </script> 
