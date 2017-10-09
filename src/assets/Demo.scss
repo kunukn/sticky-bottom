@@ -34,6 +34,13 @@ body {
 
 /* ---------------------- */
 /* Custom Sticky Bottom styling, optional */
+.sticky-bottom{
+  &--rendering-mode-two-states{
+    .sticky-bottom__box {      
+      background: dodgerblue;
+    }
+  }
+}
 .sticky-bottom__box {
   overflow: hidden;
   background: lightblue;
