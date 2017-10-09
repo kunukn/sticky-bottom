@@ -41,11 +41,22 @@ IE 11+ ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ |
    <script src="dist/sb.bundle.js"></script> <!-- library -->
    <!-- usage --> 
    <script> 
-      var stickyBottom = new StickyBottom({ /* optional config */        
-        /* best for mobile support, two modes only, default is three-states */
-        //renderingMode: 'two-states', 
-      });
-      stickyBottom.init();
+      var stickyBottom = new StickyBottom({ /* optional config */    
+      /* optional */
+      debug: ".js.sticky-bottom-debug", 
+  
+      /* two-states works best for iOS/Android, default is three-states */      
+      //renderingMode: 'two-states', 
+      
+      /* optional, these Are used default query values */
+      elems: {
+        area: '.js.sticky-bottom',
+        box: '.sticky-bottom__box',
+        boundary: '.sticky-bottom__boundary',
+      },
+    });
+    stickyBottom.init();
+    //stickyBottom.destroy(); /* use when removed from DOM */
    </script> 
  </body>
 ```
