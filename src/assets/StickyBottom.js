@@ -1,3 +1,4 @@
+import './StickyBottom.scss';
 import {
   qs,
   rAF,

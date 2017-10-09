@@ -57,7 +57,8 @@ module.exports = (env = {}) => {
     devtool: isProd ? 'source-map' : 'eval',
     context: path.resolve('./'),
     entry: {
-      app: ['./src/assets/Demo']
+      sb: ['./src/index'],
+      demo: ['./src/assets/Demo'],
     },
     output: {
       path: path.join(__dirname, 'dist'),

@@ -8,7 +8,7 @@
   <title>Sticky Bottom</title>
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">  
-<script type="text/javascript" src="app.bundle.js?d72987d27d975088e48f"></script></head>
+<script type="text/javascript" src="demo.bundle.js?7e1df5a95685464c20c7"></script><script type="text/javascript" src="sb.bundle.js?7e1df5a95685464c20c7"></script></head>
 
 <body>
   <div class="app">
@@ -40,12 +40,13 @@
   </div>
 
   <!-- optional -->
-  <div class="js debug"></div>
+  <div class="js sticky-bottom-debug"></div>
 
   <script>
     var stickyBottom = new StickyBottom({
       /* optional config */
-      debug: ".js.debug" // optional
+      debug: ".js.sticky-bottom-debug", // optional
+      //renderingMode: 'two-states', // two modes only, default is three-states
     });
     stickyBottom.init();
   </script>
