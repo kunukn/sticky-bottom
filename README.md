@@ -67,6 +67,10 @@ IE 11+ ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ |
 * open a browser and go to localhost:3333
 
 
+# build library into dist folder
+* npm run build 
+
+
 # license
 
 MIT License: http://opensource.org/licenses/MIT
