@@ -181,8 +181,8 @@ export default class StickyBottom {
 
   onResize() {
     rAF(() => {
-      this.initAndUpdateDimensions.call(this);
-      this.updateDOM.call(this, { forceUpdate: true });
+      this.initAndUpdateDimensions();
+      this.updateDOM({ forceUpdate: true });
     });
   }
 }

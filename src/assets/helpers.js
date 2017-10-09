@@ -9,9 +9,9 @@ export function qsa(expr, context) {
 
 export function rAF(callback) {
   if (window.requestAnimationFrame) {
-    window.requestAnimationFrame(callback);
+    window.requestAnimationFrame(callback.bind(this));
   } else {
-    setTimeout(callback, 0);
+    setTimeout(callback.bind(this), 0);
   }
 }
 
