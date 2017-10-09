@@ -16,6 +16,41 @@ A sticky box that sticks at the bottom within a boundary element.
 IE 11+ ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ |
 
 
+### html structure
+
+```html
+<head>  
+  <!-- this is dynamically rendered from JS
+  <link rel="stylesheet" href="dist/sb.bundle.css">  
+   -->
+</head>
+<body>
+  <!-- library markup -->
+  <div class="js sticky-bottom">
+      <div class="sticky-bottom__boundary">
+        This is the boundary area, 
+        the sticky box will be around if boundary is in focus
+        long content here......
+      </div>
+      <div class="sticky-bottom__box">
+        Sticky within boundary, with static height.
+      </div>
+    </div>
+  <!-- end library markup -->
+                
+   <script src="dist/sb.bundle.js"></script> <!-- library -->
+   <!-- usage --> 
+   <script> 
+      var stickyBottom = new StickyBottom({ /* optional config */        
+        /* best for mobile support, two modes only, default is three-states */
+        //renderingMode: 'two-states', 
+      });
+      stickyBottom.init();
+   </script> 
+ </body>
+```
+
+
 # development
 * git clone the project or download it
 * npm install
