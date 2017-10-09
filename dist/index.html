@@ -8,7 +8,7 @@
   <title>Sticky Bottom</title>
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">  
-<script type="text/javascript" src="demo.bundle.js?7e1df5a95685464c20c7"></script><script type="text/javascript" src="sb.bundle.js?7e1df5a95685464c20c7"></script></head>
+<link href="demo.bundle.css?5ca75db4fadf7d6aaba8" rel="stylesheet"><link href="sb.bundle.css?5ca75db4fadf7d6aaba8" rel="stylesheet"><script type="text/javascript" src="demo.bundle.js?5ca75db4fadf7d6aaba8"></script><script type="text/javascript" src="sb.bundle.js?5ca75db4fadf7d6aaba8"></script></head>
 
 <body>
   <div class="app">
@@ -43,12 +43,22 @@
   <div class="js sticky-bottom-debug"></div>
 
   <script>
-    var stickyBottom = new StickyBottom({
-      /* optional config */
-      debug: ".js.sticky-bottom-debug", // optional
-      //renderingMode: 'two-states', // two modes only, default is three-states
+    var stickyBottom = new StickyBottom({ /* optional config */    
+      /* optional */
+      debug: ".js.sticky-bottom-debug", 
+      
+      /* two-states works best for iOS/Android, default is three-states */      
+      //renderingMode: 'two-states', 
+      
+      /* optional, these Are used default query values */
+      elems: {
+        area: '.js.sticky-bottom',
+        box: '.sticky-bottom__box',
+        boundary: '.sticky-bottom__boundary',
+      },
     });
     stickyBottom.init();
+    //stickyBottom.destroy(); /* use when removed from DOM */
   </script>
 </body>
 
