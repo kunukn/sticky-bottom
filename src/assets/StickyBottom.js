@@ -110,11 +110,7 @@ export default class StickyBottom {
       stickyModePrev,
     } = this.state.scroll;
 
-    if (stickyMode === 'before') {
-      if (!forceUpdate && stickyModePrev === stickyMode) {
-        // no DOM update needed
-        return this;
-      }
+    const renderAsBefore = () => {
       if (this.elems.debug) {
         this.elems.debug.textContent = 'debug: state before';
       }
@@ -125,14 +121,9 @@ export default class StickyBottom {
       el.style.width = '';
       delCss(this.elems.area, ['is-fixed', 'is-after']);
       addCss(this.elems.area, 'is-before');
-    } else if (stickyMode === 'fixed') {
-      if (!forceUpdate && stickyModePrev === stickyMode) {
-        // no DOM update needed
-        return this;
-      }
-      if (this.elems.debug) {
-        this.elems.debug.textContent = 'debug: state fixed';
-      }
+    };
+
+    const renderAsFixed = () => {
       const el = this.elems.box;
       el.style.position = 'fixed';
       el.style.bottom = '';
@@ -140,11 +131,9 @@ export default class StickyBottom {
       el.style.width = `${area.width}px`;
       delCss(this.elems.area, ['is-before', 'is-after']);
       addCss(this.elems.area, 'is-fixed');
-    } else if (stickyMode === 'after') {
-      if (!forceUpdate && stickyModePrev === stickyMode) {
-        // no DOM update needed
-        return this;
-      }
+    };
+
+    const renderAsAfter = () => {
       if (this.elems.debug) {
         this.elems.debug.textContent = 'debug: state after';
       }
@@ -155,6 +144,31 @@ export default class StickyBottom {
       el.style.width = '';
       delCss(this.elems.area, ['is-before', 'is-fixed']);
       addCss(this.elems.area, 'is-after');
+    };
+
+    if (stickyMode === 'before') {
+      if (this.props.mode === 'two-states') {
+        renderAsAfter();
+        return this;
+      }
+
+      if (!forceUpdate && stickyModePrev === stickyMode) {
+        // no DOM update needed
+        return this;
+      }
+      renderAsBefore();
+    } else if (stickyMode === 'fixed') {
+      if (!forceUpdate && stickyModePrev === stickyMode) {
+        // no DOM update needed
+        return this;
+      }
+      renderAsFixed();
+    } else if (stickyMode === 'after') {
+      if (!forceUpdate && stickyModePrev === stickyMode) {
+        // no DOM update needed
+        return this;
+      }
+      renderAsAfter();
     }
 
     return this;
