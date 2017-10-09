@@ -1,0 +1,72 @@
+/* ---------------------- */
+/* Demo styling */
+
+html {
+  font-size: 16px;
+}
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 1.5;
+  margin: 0;
+  min-height: 100vh;
+  background: white;
+}
+
+.app {
+  position: relative;
+  //min-height: 300vh;
+  max-width: 400px;
+  margin: 0 auto;
+  background: white;
+  padding: 1rem;
+}
+
+.content {
+  //  display: none;
+  min-height: 10rem;
+  padding: 1rem;
+  margin: 0;
+  background: hotpink;
+  overflow: hidden;
+}
+
+/* ---------------------- */
+/* Custom Sticky Bottom styling, optional */
+.sticky-bottom__box {
+  overflow: hidden;
+  background: lightblue;
+  padding: 1rem;
+}
+.sticky-bottom__boundary {
+  padding: 1rem;
+  background: white;
+}
+.debug {
+  color: white;
+  position: fixed;
+  padding: 0 0.25rem;
+  top: 0;
+  left: 0;
+  max-width: 100%;
+  overflow: hidden;
+  background: rgba(black, 0.5);
+  min-height: 1rem;
+  font-size: 1rem;
+  z-index: 1;
+}
+.sticky-bottom {
+  &.is-before {
+    // state 1
+    .sticky-bottom__box {
+      box-shadow: 0 -3px 3px -3px #444;
+    }
+  }
+  &.is-fixed {
+    // state 2
+    .sticky-bottom__box {
+      box-shadow: 0 -3px 3px -3px #444;
+    }
+  }
+}

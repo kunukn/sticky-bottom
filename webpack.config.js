@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 const webpack = require('webpack'),
   path = require('path'),
   CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin,
@@ -59,7 +57,7 @@ module.exports = (env = {}) => {
     devtool: isProd ? 'source-map' : 'eval',
     context: path.resolve('./'),
     entry: {
-      app: ['./src/index']
+      app: ['./src/assets/Demo']
     },
     output: {
       path: path.join(__dirname, 'dist'),
@@ -128,5 +126,3 @@ module.exports = (env = {}) => {
     externals: {}
   };
 };
-
-/* eslint-enable */

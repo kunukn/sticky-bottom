@@ -1,4 +1,3 @@
-import './StickyBottom.scss';
 import {
   qs,
   rAF,
@@ -14,9 +13,9 @@ export default class StickyBottom {
   constructor(props) {
     const defaultProps = {
       elems: {
-        area: '.js.kn-sticky-bottom',
-        box: '.kn-sticky-bottom__box',
-        boundary: '.kn-sticky-bottom__boundary',
+        area: '.js.sticky-bottom',
+        box: '.sticky-bottom__box',
+        boundary: '.sticky-bottom__boundary',
       },
     };
     this.props = { ...defaultProps, ...props };
@@ -124,8 +123,8 @@ export default class StickyBottom {
       el.style.bottom = `${area.height - viewHeight}px`;
       el.style.left = '';
       el.style.width = '';
-      delCss(this.elems.area, ['kn-is-fixed', 'kn-is-after']);
-      addCss(this.elems.area, 'kn-is-before');
+      delCss(this.elems.area, ['is-fixed', 'is-after']);
+      addCss(this.elems.area, 'is-before');
     } else if (stickyMode === 'fixed') {
       if (!forceUpdate && stickyModePrev === stickyMode) {
         // no DOM update needed
@@ -139,8 +138,8 @@ export default class StickyBottom {
       el.style.bottom = '';
       el.style.left = `${area.left}px`;
       el.style.width = `${area.width}px`;
-      delCss(this.elems.area, ['kn-is-before', 'kn-is-after']);
-      addCss(this.elems.area, 'kn-is-fixed');
+      delCss(this.elems.area, ['is-before', 'is-after']);
+      addCss(this.elems.area, 'is-fixed');
     } else if (stickyMode === 'after') {
       if (!forceUpdate && stickyModePrev === stickyMode) {
         // no DOM update needed
@@ -154,8 +153,8 @@ export default class StickyBottom {
       el.style.bottom = '';
       el.style.left = '';
       el.style.width = '';
-      delCss(this.elems.area, ['kn-is-before', 'kn-is-fixed']);
-      addCss(this.elems.area, 'kn-is-after');
+      delCss(this.elems.area, ['is-before', 'is-fixed']);
+      addCss(this.elems.area, 'is-after');
     }
 
     return this;
