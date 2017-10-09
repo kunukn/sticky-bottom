@@ -1,5 +1,5 @@
 # Sticky Bottom
-Sticky Bottom library - vanilla JS, no external dependency.
+Sticky Bottom library - vanilla JS, no external dependency. Mobile friendly in two-states rendering mode.
 
 # demo
 * https://codepen.io/kunukn/full/yzvWQq/
