@@ -48,7 +48,7 @@ IE 11+ ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ |
       /* two-states works best for iOS/Android, default is three-states */      
       //renderingMode: 'two-states', 
       
-      /* optional, these Are used default query values */
+      /* optional, these are the default query values */
       elems: {
         area: '.js.sticky-bottom',
         box: '.sticky-bottom__box',
