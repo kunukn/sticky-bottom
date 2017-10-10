@@ -7,13 +7,7 @@ export function qsa(expr, context) {
   return [].slice.call((context || document).querySelectorAll(expr), 0);
 }
 
-export function rAF(callback) {
-  if (window.requestAnimationFrame) {
-    window.requestAnimationFrame(callback.bind(this));
-  } else {
-    setTimeout(callback.bind(this), 0);
-  }
-}
+export const rAF = window.requestAnimationFrame || (callback => setTimeout(callback.bind(this), 0));
 
 export function getScrollPosition() {
   return (
