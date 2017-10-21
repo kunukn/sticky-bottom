@@ -1,6 +1,8 @@
 # Sticky Bottom
 Sticky Bottom library - vanilla JS, no external dependency. Mobile friendly in two-states rendering mode.
 
+This is alternative to use css position: sticky. If you can, I would recommend to use css position: sticky instead. This library supports most browsers because it calculate stuff using JS. 
+
 # demo
 * https://codepen.io/kunukn/debug/yzvWQq/
 
